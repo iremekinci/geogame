@@ -1,52 +1,55 @@
-# 🗺️ GeoGuessr: Türkiye İl Tahmini (Web GIS Projesi)
+# 🗺️ GeoGuessr: Turkey Province Guessing Game (Web GIS Project)
 
-Bu proje, GMT 458 - Web GIS dersi kapsamında geliştirilmiş bir GeoGame'dir. Oyuncunun hedefi, sınırlı can ve süre kısıtlaması altında coğrafi ve mekansal ilişkileri kullanarak gizli Türkiye ilini bulmaktır.
+This project is a GeoGame developed as part of the **GMT 458 – Web GIS** course. The player’s goal is to identify a hidden province in Turkey using geographic knowledge and spatial reasoning—under limited lives and a strict time limit.
 
-***
+---
 
-### 🎯 Proje Amaçları ve Kritik Bileşenler
+## 🎯 Project Goals and Key Components
 
 | Component | Requirement Fulfillment | Description |
 | :--- | :--- | :--- |
-| **Geo-Component** | Province-based GeoJSON Data | Türkiye il sınırları kullanılarak mekansal veri tabanı oluşturulmuştur. Tahminler harita üzerinde renklendirilir. |
-| **Temporal & High-Score** | Yes (60 saniye süre limiti) | Oyun, 60 saniyelik zaman kısıtlaması içerir. Local Storage ile kalıcı skor takibi sağlanır. |
-| **Advanced Visualization** | Consistent Red-to-Green Color Scale | Uzaklığa dayalı **ters** renk skalası kullanılır. (Koyu Yeşil: En Yakın Risk / Kırmızı: En Uzak Risk) |
-| **Interaction Stability** | Can Sistemi ve Skor Takibi | Oyun, Can/Tahmin hakkı kısıtlamasıyla oyuncunun etkileşimini yönetir. |
+| **Geo-Component** | Province-based GeoJSON Data | A spatial database of Turkey’s provincial boundaries is used. Guesses are visualized on the map through color changes. |
+| **Temporal & High-Score** | Yes (60-second time limit) | The game includes a 60-second timer. Persistent high-score tracking is handled via Local Storage. |
+| **Advanced Visualization** | Red-to-Green Distance Scale | A reversed distance-based color scale is used (Dark Green = Closest proximity, Red = Farthest distance). |
+| **Interaction Stability** | Life System & Score Tracking | Player interaction is managed through a limited life/guess system. |
 
-***
+---
 
-### II. Görsel Tasarım ve Kullanıcı Deneyimi (UX)
+## II. Visual Design & User Experience (UX)
 
-Oyun, harita etkileşimini ve geri bildirimi önceliklendiren, duyarlı (responsive) iki sütunlu bir düzene sahiptir.
+The game layout is responsive and prioritizes map interaction and clear feedback.
 
-#### A. Ön Uç (Frontend) Düzeni ve Yerleşim
+### A. Frontend Layout & Structure
 
-| Bölge | Konum | İşlevsellik ve Estetik |
+| Section | Position | Functionality |
 | :--- | :--- | :--- |
-| **Harita** | Sol Taraf (Geniş Alan) | Leaflet ile iller çizilir. Harita, oyunun ana odağıdır ve tahminlere göre renk değiştirir. |
-| **Kontrol Paneli** | Sağ Taraf (Sabit Genişlik) | Tüm kritik **UX** (Kullanıcı Adı, Skor Tablosu, İpucu, İstatistikler) elemanlarını barındırır. Mobil cihazlarda haritanın altına kaydırılır. |
-| **Can Sayacı** | Harita Üzeri Sağ Üst | Kalan can, **büyük, kırmızı kalpler** (❤️) ile görselleştirilmiştir. Bu, anlık risk algısını artırır. |
-| **Başlangıç Modalı** | Harita Üzeri Merkez | Oyun Kuralları, Can Kuralı ve Süre bilgisini oyun başlamadan önce sunar. |
+| **Map** | Left (Main Area) | Provinces are drawn using Leaflet. Colors change based on guess proximity. |
+| **Control Panel** | Right (Fixed Width) | Contains username, scoreboard, hints, and statistics. Moves below the map on mobile devices. |
+| **Life Counter** | Top-Right (On Map) | Remaining lives are displayed as large red hearts (❤️). |
+| **Start Modal** | Centered on Map | Displays game rules, life mechanics, and the time limit before gameplay begins. |
 
-#### B. Geri Bildirim ve İpucu Mekanizması
+### B. Feedback & Hint System
 
-* **Renk Skalası:** Mesafenin azalması pozitif bir sinyal olarak algılanır; bu nedenle, yakınlık arttıkça renk **koyu yeşile** döner. Skala 7 farklı mesafeyi görsel olarak ayırır.
-* **İlçe İpucu:** Tahmin kolaylığı sağlamak için gizli ilin **temsilci bir ilçesi** ipucu olarak verilir. Bu, sadece mesafeye değil, coğrafi bilgiye de dayalı bir zorluk katmanı ekler.
+- **Color Scale:** As distance decreases, colors transition toward dark green, providing intuitive positive feedback.  
+- **District Hint:** A representative district of the hidden province is shown as a hint, adding challenge beyond distance clues.
 
-***
+---
 
-### III. Oynanış Senaryoları ve Kural Detayları
+## III. Gameplay Scenarios & Rule Details
 
-#### A. Oynanış Mekanizması
+### A. Gameplay Mechanics
 
-| Senaryo | Kural | Puanlama |
+| Scenario | Rule | Effect |
 | :--- | :--- | :--- |
-| **Zaman Kısıtlaması** | Süre 60 saniyedir. | Süre biterse oyuncu kaybeder. |
-| **Can Sistemi Kuralı** | Başlangıçta **3 can** ile başlanır. Her **5 yanlış tahminde** 1 can kaybedilir. | Oyuncunun tahmin hakkı 15 ile kısıtlanmıştır (3 can x 5 tahmin). |
-| **Yüksek Skor** | En az tahminde gizli ili bulmak. | Kazanma skoru (en az tahmin ve en hızlı süre) Local Storage'a kaydedilerek rekabet tablosu oluşturulur. |
+| **Time Limit** | 60 seconds total. | If the timer ends, the player loses. |
+| **Life System** | Start with **3 lives**; every **5 incorrect guesses** costs 1 life. | Total possible guesses = 15. |
+| **High Score** | Based on minimal guesses and fastest completion. | Stored via Local Storage for persistence. |
 
-#### B. Teknik Gereksinimler
+### B. Technical Requirements
 
-* **Frontend Mimarisi:** HTML, CSS (Duyarlı Tasarım) ve JavaScript kullanılmıştır.
-* **JS Kütüphanesi:** **Leaflet.js** harita görselleştirmesi için ana kütüphanedir.
-* **Bonus Kriteri:** Proje, kalıcı skor takibi için **Local Storage** kullanmış ve can sistemi eklenerek karmaşıklık artırılmıştır.
+- **Frontend:** HTML, CSS (Responsive), JavaScript  
+- **Mapping Library:** **Leaflet.js**  
+- **Bonus Feature:** Local Storage for permanent score tracking + Life system for added challenge  
+
+---
+
