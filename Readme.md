@@ -29,7 +29,7 @@ The game layout is responsive and prioritizes map interaction and clear feedback
 | **Start Modal** | Centered on Map | Displays game rules, life mechanics, and the time limit before gameplay begins. |
 #### B. Frontend Visual Design and Layout Mockup
 
-![alt text](geogametasarım-1.jpg)
+![GeoGame Arayüz Taslağı](geogametasarım.jpg)
 ### C. Feedback & Hint System
 
 - **Color Scale:** As distance decreases, colors transition toward dark green, providing intuitive positive feedback.  
