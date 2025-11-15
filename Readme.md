@@ -74,26 +74,6 @@ The game layout is responsive and prioritizes map interaction and clear feedback
 
 This diagram illustrates how user actions and game logic interact to update the map, track progress, and determine win/lose outcomes.
 
-```text
-User Guess
-   │
-   ▼
-processGuess()
-   │
-   ▼
-Haversine Distance Calculation
-   │
-   ▼
-Distance → Color Scale
-   │
-   ▼
-Leaflet Map Update
-   │
-   ▼
-Lives + Timer + Guess History Update
-   │
-   ▼
-Win / Lose Check
+- **User Guess** → **processGuess()** → **Haversine Distance Calculation** → **Distance → Color Scale** → **Leaflet Map Update** → **Lives + Timer + Guess History Update** → **Win / Lose Check**
 
----
 
