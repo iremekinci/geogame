@@ -53,3 +53,47 @@ The game layout is responsive and prioritizes map interaction and clear feedback
 
 ---
 
+## IV. User Flow (UX Flow)
+
+### A. Start
+- User enters **username** → Clicks **"Start Game"** → Map loads → Timer starts.
+
+### B. Game Loop
+- User enters a **province name** or **clicks on the map**.  
+- **Incorrect guess** → Color feedback applied.  
+- Province is **colored based on distance** to the hidden province.  
+- **Every 5 incorrect guesses** → 1 life is lost.
+
+### C. End
+- **Correct guess** → Win screen + score recorded.  
+- **Time runs out** or **lives = 0** → Lose screen.
+
+---
+
+## V. Game Data Flow & Technical Architecture
+
+This diagram illustrates how user actions and game logic interact to update the map, track progress, and determine win/lose outcomes.
+
+```text
+User Guess
+   │
+   ▼
+processGuess()
+   │
+   ▼
+Haversine Distance Calculation
+   │
+   ▼
+Distance → Color Scale
+   │
+   ▼
+Leaflet Map Update
+   │
+   ▼
+Lives + Timer + Guess History Update
+   │
+   ▼
+Win / Lose Check
+
+---
+
