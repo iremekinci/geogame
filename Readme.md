@@ -27,8 +27,10 @@ The game layout is responsive and prioritizes map interaction and clear feedback
 | **Control Panel** | Right (Fixed Width) | Contains username, scoreboard, hints, and statistics. Moves below the map on mobile devices. |
 | **Life Counter** | Top-Right (On Map) | Remaining lives are displayed as large red hearts (❤️). |
 | **Start Modal** | Centered on Map | Displays game rules, life mechanics, and the time limit before gameplay begins. |
+#### B. Frontend Visual Design and Layout Mockup
 
-### B. Feedback & Hint System
+![alt text](geogametasarım-1.jpg)
+### C. Feedback & Hint System
 
 - **Color Scale:** As distance decreases, colors transition toward dark green, providing intuitive positive feedback.  
 - **District Hint:** A representative district of the hidden province is shown as a hint, adding challenge beyond distance clues.
